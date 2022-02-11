@@ -24,7 +24,9 @@ public class UserManagerRest {
     @GetMapping(path = "/users")
     public List<UserResponseDto> getAllUser(){
         List<UserResponseDto> userDto= new ArrayList<>();
-        pojoMapper.map(userRepository.findAll(), UserResponseDto.class);
+        userRepository.findAll().forEach(
+                user -> userDto.add(pojoMapper.map(user,UserResponseDto.class))
+        );
         return userDto;
     }
     @PostMapping(path = "/users")
