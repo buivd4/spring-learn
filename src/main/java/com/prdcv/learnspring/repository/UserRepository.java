@@ -1,12 +1,10 @@
 package com.prdcv.learnspring.repository;
-import com.prdcv.learnspring.domain.User;
+
+import org.socialsignin.spring.data.dynamodb.repository.EnableScan;
 import org.springframework.data.repository.CrudRepository;
+import com.prdcv.learnspring.domain.User;
 
-import java.util.List;
-
-public interface UserRepository extends CrudRepository<User,Long> {
-    List<User> findByLastName(String lastName);
-
-    User findById(long id);
-
+@EnableScan
+public interface UserRepository extends CrudRepository<User,String> {
+    User findByUserId(String userId);
 }
