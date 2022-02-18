@@ -5,7 +5,7 @@ FROM maven:3-amazoncorretto-8 AS build
 WORKDIR /spring-learn
 COPY src /spring-learn/src
 COPY pom.xml /spring-learn
-RUN mvn -f /spring-learn/pom.xml clean package
+RUN export MAVEN_OPTS="-DsocksProxyHost=10.77.8.70 -DsocksProxyPort=8080" && mvn -f /spring-learn/pom.xml clean package
 
 #
 # Package stage
